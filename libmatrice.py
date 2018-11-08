@@ -23,12 +23,26 @@ def det2(mat):
     if len(mat) != 2 or len(mat[0]) != 2 or len(mat[1]) != 2:
         return 'error'
     #Calcul a*d
-    a=mat[0][0] * mat[1][1]
+    a = mat[0][0] * mat[1][1]
     #Calcul b*c
-    b=mat[0][1] * mat[1][0]
+    b = mat[0][1] * mat[1][0]
     #Calcul déterminant
     determinant2 = a - b
     return determinant2
+
+
+def reduit(mat,ligne,colonne):
+    mat2 = [[0,0],[0,0]]
+    ml = 0
+    for i in range 3:
+        mc = 0
+        if i != ligne:
+        for j in range 3:
+            if j != colonne:
+                mat2[ml],[mc] = mat[l],[c]
+                mc += 1
+        ml += 1
+return mat2
 
 
 '''
@@ -58,3 +72,28 @@ def det3(mat):
         return 'error'
     return(mat[0][0]*det2(reduit(mat,0,0))-mat[0][1]*det2(reduit(mat,0,1))+mat[0][2]*det2(reduit(mat,0,2)))
 
+
+def inverse(mat):
+    transpose_comatrice = transpose(comatrice(mat))
+    for i in range 3:
+        for j in range 3:
+            transpose_comatrice[i][j] = transpose_comatrice[i][j]/det3(mat)
+    return transpose_comatrice
+    
+
+
+def transpose(mat):
+    transpose=[[0,0,0],[0,0,0],[0,0,0]]
+    for i in range(0,3):
+        for j in range(0,3):
+            transpose[j][i]=mat[i][j]
+    return transpose
+
+
+def comatrice(mat):
+    comatrice = [[0,0,0],[0,0,0],[0,0,0]]
+    for i in range 3:
+        for j in range 3:
+            comatrice[i][j] = (-1)**(i+j)*det2(reduit(mat,i,j)) 
+    return comatrice
+            
