@@ -11,9 +11,10 @@ Elle utilisera des fonctions permettant de calculer:
 '''
 
 '''
-La fonction det2(mat) permet d'obtenir le déterminant de la matrice 2x2 mat passée en parmètre,
-Pour se faire 
-
+La fonction det2(mat) permet d'obtenir le déterminant de la matrice 2x2 mat passée en paramètre,
+Pour se faire, on vérifie si la matrice est bien une matrice 2x2, 
+Si on a bien une matrice 2x2 de la forme: [[a,b],[c,d]] alors le calcul du déterminant s'effectue
+de la façon suivante : det(mat)=a*d-(c*b).
 '''
 
 
@@ -31,5 +32,29 @@ def det2(mat):
 
 
 '''
-La fonction det3(mat)
+La fonction det3(mat) permet d'obtenir le déterminant de la matrice 3x3 passée en paramètre,
+Pour se faire, on vérifie si la matrice est bien une matrice 3x3,
+Si on a bien une matrice 3x3 de la forme mat=[[a,b,c],[d,e,f],[g,h,i]]
+avec :
+    - a accessible par la clé mat[0][0]
+    - b accessible par la clé mat[0][1]
+    - c accessible par la clé mat[0][2]
+    - d accessible par la clé mat[1][0]
+    - e accessible par la clé mat[1][1]
+    - f accessible par la clé mat[1][2]
+    - g accessible par la clé mat[2][0]
+    - h accessible par la clé mat[2][1]
+    - i accessible par la clé mat[2][2]
+La formule pour calculer le déterminant d'une matrice 3x3 étant:
+On utilise également la fonction reduit(mat,ligne,colonne) afin d'obtenir la matrice 2x2 nous
+permettant de calculer son déterminant.
+
 '''
+
+
+def det3(mat):
+    #Condition taille 
+    if len(mat)!=3 or len(mat[0])!=3 or len(mat[1])!=3 or len(mat[2])!=3:
+        return 'error'
+    return(mat[0][0]*det2(reduit(mat,0,0))-mat[0][1]*det2(reduit(mat,0,1))+mat[0][2]*det2(reduit(mat,0,2)))
+
