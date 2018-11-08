@@ -18,8 +18,3 @@ def reduit(mat,ligne,colonne):
                 mc += 1
         ml += 1
 return mat2
-
-
-
-def inverse(mat):
-    return transposee(comatrice(mat))/det3(mat)
