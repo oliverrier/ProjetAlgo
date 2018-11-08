@@ -9,5 +9,3 @@ def det2(mat):
     #Calcul déterminant
     determinant2 = a - b
     return determinant2
-    
-print(det2([[-3,4],[0,1]]))
