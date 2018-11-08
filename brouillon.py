@@ -1,4 +1,10 @@
-mat = [[-3,-3,-4],[0,1,1],[4,3,4]] #Création de la matrice
+#Création de la matrice
+mat = [[-3,-3,-4],[0,1,1],[4,3,4]]
+
+
+
+
+# Fonction reduit
 def reduit(mat,ligne,colonne):
     mat2 = [[0,0],[0,0]]
 # La fonction va parcourir la matrice, I verticalement et J horizontalement.
@@ -12,3 +18,8 @@ def reduit(mat,ligne,colonne):
                 mc += 1
         ml += 1
 return mat2
+
+
+
+def inverse(mat):
+    return transposee(comatrice(mat))/det3(mat)
