@@ -8,4 +8,8 @@ Elle utilisera des fonctions permettant de calculer:
     - la comatrice d'une matrice appelée comatrice(mat)
     - la transposée d'une matrice appelée transposée(mat)
     - l'inverse d'une matrice appelée inverse(mat)
+
+La fonction det2(mat) permet d'obtenir le déterminant de la matrice 2x2 mat passée en parmètre,
+Pour se faire 
+
 '''
