@@ -34,15 +34,15 @@ def det2(mat):
 def reduit(mat,ligne,colonne):
     mat2 = [[0,0],[0,0]]
     ml = 0
-    for i in range 3:
+    for i in range (0,3):
         mc = 0
         if i != ligne:
-        for j in range 3:
-            if j != colonne:
-                mat2[ml],[mc] = mat[l],[c]
-                mc += 1
-        ml += 1
-return mat2
+            for j in range (0,3):
+                if j != colonne:
+                    mat2[ml],[mc] = mat[i],[j]
+                    mc += 1
+            ml += 1
+    return mat2
 
 
 '''
@@ -68,15 +68,17 @@ permettant de calculer son déterminant.
 
 def det3(mat):
     #Condition taille 
-    if len(mat)!=3 or len(mat[0])!=3 or len(mat[1])!=3 or len(mat[2])!=3:
-        return 'error'
-    return(mat[0][0]*det2(reduit(mat,0,0))-mat[0][1]*det2(reduit(mat,0,1))+mat[0][2]*det2(reduit(mat,0,2)))
+    print(mat[0][0])
+    print(reduit(mat,0,0))
+    print(det2(reduit(mat,0,0)))
+    if not( len(mat)!=3 or len(mat[0])!=3 or len(mat[1])!=3 or len(mat[2])!=3):
+        return mat[0][0]*det2(reduit(mat,0,0)) - mat[0][1]*det2(reduit(mat,0,1)) + mat[0][2]*det2(reduit(mat,0,2))
 
 
 def inverse(mat):
     transpose_comatrice = transpose(comatrice(mat))
-    for i in range 3:
-        for j in range 3:
+    for i in range (0,3):
+        for j in range (0,3):
             transpose_comatrice[i][j] = transpose_comatrice[i][j]/det3(mat)
     return transpose_comatrice
     
@@ -92,8 +94,10 @@ def transpose(mat):
 
 def comatrice(mat):
     comatrice = [[0,0,0],[0,0,0],[0,0,0]]
-    for i in range 3:
-        for j in range 3:
+    for i in range (0,3):
+        for j in range (0,3):
             comatrice[i][j] = (-1)**(i+j)*det2(reduit(mat,i,j)) 
     return comatrice
             
+mat = [[-3,-3,-4],[0,1,1],[4,3,4]]
+print(inverse(mat))
