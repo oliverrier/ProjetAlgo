@@ -34,12 +34,14 @@ def det2(mat):
 def reduit(mat,ligne,colonne):
     mat2 = [[0,0],[0,0]]
     ml = 0
-    for i in range (0,3):
-        mc = 0
-        if i != ligne:
-            for j in range (0,3):
-                if j != colonne:
-                    mat2[ml],[mc] = mat[i],[j]
+    for l in range (0,3):
+        print(l)
+        if l != ligne:
+            mc = 0
+            for c in range (0,3):
+                print(c)
+                if c != colonne:
+                    mat2[ml],[mc] = mat[l],[c]
                     mc += 1
             ml += 1
     return mat2
