@@ -39,12 +39,12 @@ def reduit(mat,ligne,colonne):
         if l != ligne:
             mc = 0
             for c in range (0,3):
-                print(c)
                 if c != colonne:
-                    mat2[ml],[mc] = mat[l],[c]
+                    mat2[ml][mc] = mat[l][c]
                     mc += 1
             ml += 1
     return mat2
+
 
 
 '''
