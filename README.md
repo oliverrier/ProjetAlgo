@@ -25,8 +25,12 @@ On utilise la commande *from* et le signe *, pour dire :
 « Dans le fichier "fichier_contenant" on importe tout. »
 Vous l'aurez compris, on utilise *from* pour dire que on chercher dans le fichier et le signe * signifie simplement tout.
 
-*Ah oui je vois, donc si libmatrice est une librairie ?*
+*Ah oui je vois, donc si libmatrice est une librairie...*
 
 >## Que fait la librairie libmatrice ?
+
 La librairie libmatrice contient toutes les fonctions qui permettent d'inverser une matrice 3x3.
 
+>## Comment on inverse une matrice ?
+
+L'inversion de la matrice c'est la transposé de la matrice divisé par 
