@@ -86,3 +86,22 @@ Algorithme:
     On parcourt chaque ligne et chaque colonne de la matrice donnée en paramètre puis on échange les indices lignes-colonnes par rapport à la matrice de base.
     On renvoie ensuite la matrice obtenue.
 
+
+Module comatrice:
+
+Algo:
+
+    Pour la comatrice, on initialise une matrice 3x3 à 0.
+    On parcourt ensuite les lignes et les colonnes de la matrice passée en paramètre.
+    On effectue ensuite le calcul pour chaque composant de la matrice qui a été initialisée.
+    On renvoie la matrice ainsi créée
+
+
+Module inverse:
+
+Algo: 
+
+    Pour inverser une matrice, on recupère la transposee de la comatrice qui nous est passée en paramètre.
+    Ensuite on parcourt les lignes et colonnes de la matrice ainsi créée pour diviser chacun de ses composants par le déterminant de la matrice passée en paramètre.
+    On renvoie ensuite le résultat obtenu qui est notre matrice inversée.
+    
