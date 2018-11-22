@@ -1,1 +1,2 @@
-ProjetAlgo
+#Librairie "libmatrice".
+
