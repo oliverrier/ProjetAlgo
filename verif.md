@@ -1,4 +1,4 @@
-TEST de def2:
+TEST de det2:
 
 ```
 import libmatrice as l
@@ -48,7 +48,7 @@ _En effet pour calculer reduit il faut supprimer une ligne et une colonne et don
 
 
 
-TEST de def3:
+TEST de det3:
 
 ```
 import libmatrice as l
@@ -59,7 +59,7 @@ print(l.det3(mat))
 
 Résultat: -104
 
-_En effet pour calculer def 3 il faut faire 4*([3, 5], [5, 7]) - 6*([9, 5], [8, 7]) + 2 * ([9, 3], [8, 1]) et le résultat est bien -104_
+_En effet pour calculer def 3 il faut faire 4 * reduit (mat, 0, 0) - 6 * reduit(mat, 0, 1) + 2 * reduit(mat, 0, 2) et le résultat est bien -104_
 ```
 
 
