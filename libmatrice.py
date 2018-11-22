@@ -75,7 +75,7 @@ def inverse(mat):
     transpose_comatrice = transpose(comatrice(mat))
     for i in range (0,3):
         for j in range (0,3):
-            transpose_comatrice[i][j] = transpose_comatrice[i][j]/det3(mat)
+            transpose_comatrice[i][j] = transpose_comatrice[i][j] / det3(mat)
     return transpose_comatrice
     
 
