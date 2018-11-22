@@ -35,7 +35,6 @@ def reduit(mat,ligne,colonne):
     mat2 = [[0,0],[0,0]]
     ml = 0
     for l in range (0,3):
-        print(l)
         if l != ligne:
             mc = 0
             for c in range (0,3):
@@ -95,5 +94,5 @@ def comatrice(mat):
             comatrice[i][j] = (-1)**(i+j)*det2(reduit(mat,i,j)) 
     return comatrice
             
-mat = [[-3,-3,-4],[0,1,1],[4,3,4]]
-print(inverse(mat))
+#mat = [[-3,-3,-4],[0,1,1],[4,3,4]]
+#print(inverse(mat))

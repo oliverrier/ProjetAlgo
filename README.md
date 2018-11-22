@@ -19,8 +19,14 @@ Pour créer une fonction nous allons utiliser la fonction *def* :
 
 C'est très simple il suffit de l'appelé avec la commande *import* :
 
-    from ficher_avec_des_fonctions import *
+    from ficher_contenant import *
 
 On utilise la commande *from* et le signe *, pour dire :
-« Dans le fichier "fichier_avec_des_fonctions" on importe tout. »
-Vous l'aurez compris, on utilise ces parametres pour importer toute les fonctions qu'on aura crée dans le fichier.
+« Dans le fichier "fichier_contenant" on importe tout. »
+Vous l'aurez compris, on utilise *from* pour dire que on chercher dans le fichier et le signe * signifie simplement tout.
+
+*Ah oui je vois, donc si libmatrice est une librairie ?*
+
+>## Que fait la librairie libmatrice ?
+La librairie libmatrice contient toutes les fonctions qui permettent d'inverser une matrice 3x3.
+

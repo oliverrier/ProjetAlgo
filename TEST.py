@@ -1,9 +1,4 @@
 import libmatrice as l
 
-mat = [[4, 6], [9, 3]]
-
-l.det2(mat)
-
-
-
-
+mat = [[16, -23, -15], [-40, 12, 44], [24, -2, -42]]
+print(l.transpose(mat))
