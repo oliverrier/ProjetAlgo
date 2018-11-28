@@ -1,25 +1,32 @@
 # Librairie python: libmatrice
+
 >## *Qu'est-ce qu'une librairie ?*
 
 Une **librairie** est un ensemble de **modules** (aussi appelés **fonctions**) qui peuvent être utiliser dans plusieurs programmes.
 Cela évite d'écrire tout le temps la même chose dans plusieurs programme.
 
 *Ah je vois, c'est beaucoup plus pratique !*
+
 >## *Mais qu'est-ce qu'une fonction ?*
+
 Une fonction est un morceau de programme qui permet de **réaliser plusieurs taches** et qui prend en compte des **parametres**.
 
 Pour créer une fonction nous allons utiliser la fonction *def* :
 
+```python
     def ma_fonction(parametre):
         *fait quelque chose*
         return resultat
+```
 
 *Je comprends mieux. Mais si je peux l'utiliser dans plusieurs programmes...*
 >## *Comment je l'ajoute dans d'autres programmes ?*
 
 C'est très simple il suffit de l'appelé avec la commande *import* :
 
-    from ficher_contenant import *
+```python
+from ficher_contenant import *
+```
 
 On utilise la commande *from* et le signe *, pour dire :
 « Dans le fichier "fichier_contenant" on importe tout. »
@@ -33,4 +40,143 @@ La librairie libmatrice contient toutes les fonctions qui permettent d'inverser 
 
 >## Comment on inverse une matrice ?
 
-L'inversion de la matrice c'est la transposé de la matrice divisé par 
+L'inverse d'une matrice c'est la transposée de sa comatrice divisé par son déterminant.
+
+![alt text](Images/Inverse_matrice.png "Formule inversion matrice 3x3")
+
+Pour cela il y a bien des étapes à réaliser avant de pouvoir appliquer cette formule.
+
+On commence d'abord par faire une fonction nous permettant de calculer le déterminant d'une matrice 2x2, pour cela rien de bien compliqué:
+
+![alt text](Images/Calcul_det2.png "Calcul déterminant matrice 2x2")
+
+Algorithmiquement on obtient,
+
+    Verification de la taille de la matrice, il nous faut 2 lignes et 2 colonnes.
+    Calcul de la valeur de a * d puis de c * b.
+    Soustraction des deux résultats obtenus.
+    Revoie de la valeur du déterminant calculé.
+
+Voilà à quoi ressemble ces instructions une fois traduites en python,
+
+```python
+def det2(mat):
+    #Test si la matrice est une matrice carré de taille 2
+    if len(mat) != 2 or len(mat[0]) != 2 or len(mat[1]) != 2:
+        return 'error'
+    #Calcul a*d
+    a = mat[0][0] * mat[1][1]
+    #Calcul b*c
+    b = mat[0][1] * mat[1][0]
+    #Calcul déterminant
+    determinant2 = a - b
+    return determinant2
+```
+
+En testant notre code pour une matrice quelconque, le résultat suivant est renvoyé,
+
+```python
+    import libmatrice as l
+    mat = [[4, 6], [9, 3]]
+    print(l.det2(mat))
+    Résultat: -42
+```
+
+En effet pour calculer det2 il faut faire 4*3-6*9 = 12 - 54 et le résultat est bien -42.
+
+Ensuite, on doit réduire notre matrice 3x3 (celle que l'on veut inverser) en une matrice 2x2 pour obtenir une partie du calcul nécessaire pour calculer son déterminant.
+
+On doit donc choisir une ligne et une colonne à enlever pour avoir une matrice 2x2, disons que l'on souhaite enlever la 1ère ligne et la 2ème colonne. Voilà ce que ça donne pour nous,
+
+![alt text](Images/Reduction_matrice.png "Reduction matrice 3x3")
+
+Mais pour l'ordinateur ce n'est pas aussi simple, voilà comment voir le problème du point de vue de l'ordinateur
+
+    La fonction prend en paramètre la matrice 3x3, appellée mat, la ligne à enlever, ligne, et la colonne à enlever, colonne.
+    On initialise tout d'abord une matrice 2x2, appelée mat2, avec toutes ses valeurs à 0 pour que ça soit plus simple à modifier.
+    On initialise ensuite ml à 0, cette variable nous permettra de savoir quel valeur de notre mat2 nous allons modifier.
+    On parcourt ensuite chaque ligne de notre matrice 3x3.
+    On vérifie que la ligne que l'on parcourt actuellement est différente de la ligne que l'on veut enlever.
+    On initialise ensuite mc qui à la même vocation que ml mais pour les colonne.
+    Après ça on parcourt les colonnes de notre matrice 3x3.
+    On vérifie que la colonne que l'on parcourt n'est pas celle que l'on veut enlever.
+    et ensuite on récupère la valeur de la ligne et de la colonne que l'on parcourt actuellement pour la rentrer dans mat2 à la ligne ml et à la colonne mc.
+    On incrémente ensuite mc à chaque fois qu'on parcourt une colonne valide et ml à chaque ligne valide.
+    On a donc ainsi notre matrice, mat2, avec les valeurs que nous voulons.
+    On renvoie ensuite notre matrice 2x2.
+
+Un peu plus compliqué je vous l'accorde, voilà comment cela rends une fois traduit en python,
+
+```python
+def reduit(mat,ligne,colonne):
+    # Initialisation de la matrice 2x2
+    mat2 = [[0,0],[0,0]]
+    # Initialisation de ml à 0
+    ml = 0
+    # On parcourt ici les lignes de notre matrice 3x3
+    for l in range (0,3):
+        # On vérifie que l'on ne parcourt pas la ligne que l'on souhaite enlever
+        if l != ligne:
+            # On initialise mc à 0
+            mc = 0
+            #On parcourt les colonnes de la matrice 3x3
+            for c in range (0,3):
+                # On vérifie qu'on ne rentre pas dans les valeurs de la colonne que l'on souhaite enlever
+                if c != colonne:
+                    # On récupère les valeurs dont nous avons besoin pour les ajouter dans notre matrice 2x2 à leur place
+                    mat2[ml][mc] = mat[l][c]
+                    # On incrémente mc pour modifier la valeur de la prochaine colonne de la matrice 2x2
+                    mc += 1
+            # On incrémente ml pour modifier la valeur de la prochaine ligne de la matrice 2x2
+            ml += 1
+    # On renvoie notre matrice 2x2 avec les valeurs voulues
+    return mat2
+```
+
+On teste alors notre code,
+
+```python
+    import libmatrice as l
+    mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
+    print(l.reduit(mat, 0, 0))
+    Résultat: [[3, 5], [1, 7]]
+```
+
+En effet pour calculer reduit il faut supprimer une ligne et une colonne et donc dans ce cas là cela donne cela donne bien,
+
+![alt text](Images/Verification_reduction_matrice.png "Verification reduction matrice exemple")
+
+Maintenant que nous savons réduire une matrice 3x3 en matrice 2x2 et calculer son déterminant, on peut calculer celui de notre matrice mère, le calcul est cependant un peu plus compliqué,
+
+![alt text](Images/Determinant_matrice_3x3.svg "Calcul déterminant 3x3")
+
+On reconnait ici la réduction de notre matrice ainsi que le calcul de son déterminant, algorithmiquement nous allons réutiliser les fonctions que nous avons réalisées au préalable,
+
+    On vérifie d'abord que la matrice est bien conforme et fait la bonne taille.
+    Ensuite on utilise les fonction antérieures pour réaliser le calcul précédemment cité
+    On renvoie ensuite le résultat obtenu
+
+C'est une fonction relativement simple à coder une fois que nous avons les autres, voilà ce qu'elle donne en python,
+
+```python
+def det3(mat):
+    #Condition taille 
+    if len(mat)!=3 or len(mat[0])!=3 or len(mat[1])!=3 or len(mat[2])!=3:
+        return 'error'
+    # Calcul du déterminant
+    determ3 = mat[0][0] * det2(reduit(mat,0,0)) - mat[0][1] * det2(reduit(mat,0,1)) + mat[0][2] * det2(reduit(mat,0,2))
+    return determ3
+```
+
+Petit test de notre code:
+
+```python
+    import libmatrice as l
+    mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
+    print(l.det3(mat))
+    Résultat: -104
+```
+
+Et le voilà verifié:
+
+![alt text](Images/Verification_determinant_3x3.png "Verification calcul matrice 3x3")
