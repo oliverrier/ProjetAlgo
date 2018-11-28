@@ -180,3 +180,35 @@ Petit test de notre code:
 Et le voilà verifié:
 
 ![alt text](Images/Verification_determinant_3x3.png "Verification calcul matrice 3x3")
+
+Nous allons maintenant voir comment calculer la comatrice d'une matrice 3x3, pour cela rien de plus simple, il suffit d'appliquer cette belle formule,
+
+![alt text](Images/Comatrice.png "Calcul comatrice")
+
+Pour l'algorithme derrière la fonction, on va encore utilisé les fonctions que nous avons fait auparavant,
+
+    Pour la comatrice, on initialise une matrice 3x3 à 0.
+    On parcourt ensuite les lignes et les colonnes de la matrice passée en paramètre.
+    On effectue ensuite le calcul du delta(i,j) pour chaque composant de la matrice passée en paramètre.
+    On obtient ainsi la matrice avec les bonnes valeurs.
+    On renvoie la matrice ainsi créée.
+
+Pour le code voilà ce qu'on obtient,
+
+```python
+def comatrice(mat):
+    comatrice = [[0,0,0],[0,0,0],[0,0,0]]
+    for i in range (0,3):
+        for j in range (0,3):
+            comatrice[i][j] = (-1)**(i+j)*det2(reduit(mat,i,j))
+    return comatrice
+```
+
+On effectue alors le test de notre fonction,
+
+```python
+    import libmatrice as l
+    mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
+    print(l.comatrice(mat))
+    Résultat: [[16, -23, -15], [-40, 12, 44], [24, -2, -42]]
+```
