@@ -3,7 +3,7 @@
 >## *Qu'est-ce qu'une librairie ?*
 
 Une **librairie** est un ensemble de **modules** (aussi appelés **fonctions**) qui peuvent être utiliser dans plusieurs programmes.
-Cela évite d'écrire tout le temps la même chose dans plusieurs programme.
+Cela évite d'écrire tout le temps la même chose dans plusieurs programmes.
 
 *Ah je vois, c'est beaucoup plus pratique !*
 
@@ -22,7 +22,7 @@ def ma_fonction(parametre):
 *Je comprends mieux. Mais si je peux l'utiliser dans plusieurs programmes...*
 >## *Comment je l'ajoute dans d'autres programmes ?*
 
-C'est très simple il suffit de l'appelé avec la commande *import* :
+C'est très simple il suffit de l'appeller avec la commande *import* :
 
 ```python
 from ficher_contenant import *
@@ -40,7 +40,7 @@ La librairie libmatrice contient toutes les fonctions qui permettent d'inverser 
 
 >## Comment on inverse une matrice ?
 
-L'inverse d'une matrice c'est la transposée de sa comatrice divisé par son déterminant.
+L'inverse d'une matrice c'est la transposée de sa comatrice divisée par son déterminant.
 
 ![alt text](Images/Inverse_matrice.png "Formule inversion matrice 3x3")
 
@@ -147,6 +147,7 @@ mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
 print(l.reduit(mat, 0, 0))
 Résultat: [[3, 5], [1, 7]]
 ```
+
 *En fait ça revient supprimer des lignes ?*
 
 En effet pour calculer reduit il faut supprimer une ligne et une colonne et donc dans ce cas là cela donne cela donne bien :
