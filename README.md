@@ -242,6 +242,8 @@ Oui, il ne manque plus qu'à utiliser la formule du début.
     On DIVISE les composants par le déterminant de la matrice 
     On RETOURNE le résultat obtenu qui est notre matrice inversée
 
+Ce qui nous donne en python :
+
 ```python
 def inverse(mat):
     transpose_comatrice = transpose(comatrice(mat))
