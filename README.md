@@ -196,7 +196,7 @@ Et le voilà verifié :
 
 Nous allons maintenant voir comment calculer la comatrice d'une matrice 3x3.
 
->## Comment on calcul une comatrice ?
+>## Comment on calcule une comatrice ?
 
  Pour cela rien de plus simple, il suffit d'appliquer cette belle formule :
 
@@ -233,5 +233,24 @@ Résultat: [[16, -23, -15], [-40, 12, 44], [24, -2, -42]]
 *Donc là, on a la matrice reduite, son determinant et sa comatrice...*
 
 Oui, il ne manque plus qu'à utiliser la formule du début.
+
+![alt text](Images/Inverse_matrice.png "Formule inversion matrice 3x3")
+
+    On RECUPERE la transposee de la comatrice
+    On PARCOURT les lignes et colonnes de la matrice
+    On DIVISE les composants par le déterminant de la matrice 
+    On RETOURNE le résultat obtenu qui est notre matrice inversée
+
+```python
+def inverse(mat):
+    transpose_comatrice = transpose(comatrice(mat))
+    for i in range (0,3):
+        for j in range (0,3):
+            transpose_comatrice[i][j] = transpose_comatrice[i][j] / det3(mat)
+    return transpose_comatrice
+```
+Soit :
+![alt text](Images/Verif_calcul_inverse.png "Voilà l'application sur papier.")
+
 
 *Je comprends mieux comment ça marche, je vais de ce pas télécharger cette librairie, merci beaucoup !*
