@@ -14,9 +14,9 @@ Une fonction est un morceau de programme qui permet de **réaliser plusieurs tac
 Pour créer une fonction nous allons utiliser la fonction *def* :
 
 ```python
-    def ma_fonction(parametre):
-        *fait quelque chose*
-        return resultat
+def ma_fonction(parametre):
+    *fait quelque chose*
+    return resultat
 ```
 
 *Je comprends mieux. Mais si je peux l'utiliser dans plusieurs programmes...*
@@ -76,10 +76,10 @@ def det2(mat):
 En testant notre code pour une matrice quelconque, le résultat suivant est renvoyé :
 
 ```python
-    import libmatrice as l
-    mat = [[4, 6], [9, 3]]
-    print(l.det2(mat))
-    Résultat: -42
+import libmatrice as l
+mat = [[4, 6], [9, 3]]
+print(l.det2(mat))
+Résultat: -42
 ```
 
 En effet pour calculer det2 il faut faire 4 * 3 - 6 * 9 = 12 - 54 et le résultat est bien -42.
@@ -88,7 +88,9 @@ En effet pour calculer det2 il faut faire 4 * 3 - 6 * 9 = 12 - 54 et le résulta
 
 Ensuite, on doit réduire notre matrice 3x3 (celle que l'on veut inverser) en une matrice 2x2 pour obtenir une partie du calcul nécessaire pour calculer son déterminant.
 
-On doit donc choisir une ligne et une colonne à enlever pour avoir une matrice 2x2, disons que l'on souhaite enlever la 1ère ligne et la 2ème colonne. Voilà ce que ça donne pour nous,
+>## Comment on réduit une matrice 2x2 en une matrice 3x3 ?
+
+On doit choisir une ligne et une colonne à enlever pour avoir une matrice 2x2, disons que l'on souhaite enlever la 1ère ligne et la 2ème colonne. Voilà ce que ça donne pour nous :
 
 ![alt text](Images/Reduction_matrice.png "Reduction matrice 3x3")
 
@@ -140,21 +142,21 @@ def reduit(mat,ligne,colonne):
 Maintenant il faut tester ce programme :
 
 ```python
-    import libmatrice as l
-    mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
-    print(l.reduit(mat, 0, 0))
-    Résultat: [[3, 5], [1, 7]]
+import libmatrice as l
+mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
+print(l.reduit(mat, 0, 0))
+Résultat: [[3, 5], [1, 7]]
 ```
 
 *En fait ça revient supprimer des lignes ?*
 
-En effet pour calculer reduit il faut supprimer une ligne et une colonne et donc dans ce cas là cela donne cela donne bien,
+En effet pour calculer reduit il faut supprimer une ligne et une colonne et donc dans ce cas là cela donne cela donne bien :
 
 ![alt text](Images/Verification_reduction_matrice.png "Verification reduction matrice exemple")
 
 *Maintenant qu'on sait réduire cette matrice 3x3 pour calculer son determinant qu'est-ce qu'on attend ?*
 
-Maintenant que nous savons réduire une matrice 3x3 en matrice 2x2 et calculer son déterminant, on peut calculer celui de notre matrice mère, le calcul est cependant un peu plus compliqué,
+Maintenant que nous savons réduire une matrice 3x3 en matrice 2x2 et calculer son déterminant, on peut calculer celui de notre matrice mère,le calcul est cependant un peu plus compliqué,
 
 ![alt text](Images/Determinant_matrice_3x3.svg "Calcul déterminant 3x3")
 
@@ -166,44 +168,50 @@ Pas de panique ! On reconnait ici la réduction de notre matrice ainsi que le ca
     Ensuite on UTILISE LES FONCTIONS antérieures pour réaliser le calcul précédemment cité
     On RENVOIE le résultat obtenu
 
-C'est une fonction relativement simple à coder une fois que nous avons les autres, voilà ce qu'elle donne en python,
+C'est une fonction relativement simple à programmer une fois que nous avons les autres, voilà ce qu'elle donne en python :
 
 ```python
 def det3(mat):
-    #Condition taille 
+#Condition taille 
     if len(mat)!=3 or len(mat[0])!=3 or len(mat[1])!=3 or len(mat[2])!=3:
         return 'error'
-    # Calcul du déterminant
+# Calcul du déterminant
     determ3 = mat[0][0] * det2(reduit(mat,0,0)) - mat[0][1] * det2(reduit(mat,0,1)) + mat[0][2] * det2(reduit(mat,0,2))
     return determ3
 ```
 
-Petit test de notre code:
+Petit test de notre code :
 
 ```python
-    import libmatrice as l
-    mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
-    print(l.det3(mat))
-    Résultat: -104
+import libmatrice as l
+mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
+print(l.det3(mat))
+Résultat: -104
 ```
 
-Et le voilà verifié:
+Et le voilà verifié :
 
 ![alt text](Images/Verification_determinant_3x3.png "Verification calcul matrice 3x3")
 
-Nous allons maintenant voir comment calculer la comatrice d'une matrice 3x3, pour cela rien de plus simple, il suffit d'appliquer cette belle formule,
+*Ah oui en effet ce n'est pas si compliqué !*
+
+Nous allons maintenant voir comment calculer la comatrice d'une matrice 3x3.
+
+>## Comment on calcul une comatrice ?
+
+ Pour cela rien de plus simple, il suffit d'appliquer cette belle formule :
 
 ![alt text](Images/Comatrice.png "Calcul comatrice")
 
-Pour l'algorithme derrière la fonction, on va encore utilisé les fonctions que nous avons fait auparavant,
+Pour l'algorithme derrière la fonction, on va encore utilisé les fonctions que nous avons fait auparavant :
 
-    Pour la comatrice, on initialise une matrice 3x3 à 0.
-    On parcourt ensuite les lignes et les colonnes de la matrice passée en paramètre.
-    On effectue ensuite le calcul du delta(i,j) pour chaque composant de la matrice passée en paramètre.
-    On obtient ainsi la matrice avec les bonnes valeurs.
-    On renvoie la matrice ainsi créée.
+    POUR la comatrice, on INITIALISE une matrice 3x3 à 0
+    On PARCOURT ensuite les lignes et les colonnes de la matrice passée en paramètre
+    On CALCUL du delta ▲(i,j) POUR CHAQUE composant de la matrice passée en paramètre
+    On OBTIENT la matrice avec les bonnes valeurs
+    On RENVOIE la matrice créée
 
-Pour le code voilà ce qu'on obtient,
+Pour le code voilà ce qu'on obtient :
 
 ```python
 def comatrice(mat):
@@ -217,8 +225,14 @@ def comatrice(mat):
 On effectue alors le test de notre fonction,
 
 ```python
-    import libmatrice as l
-    mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
-    print(l.comatrice(mat))
-    Résultat: [[16, -23, -15], [-40, 12, 44], [24, -2, -42]]
+import libmatrice as l
+mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
+print(l.comatrice(mat))
+Résultat: [[16, -23, -15], [-40, 12, 44], [24, -2, -42]]
 ```
+
+*Donc là, on a la matrice reduite, son determinant et sa comatrice...*
+
+Oui, il ne manque plus qu'à utiliser la formule du début.
+
+*Je comprends mieux comment ça marche, je vais de ce pas télécharger cette librairie, merci beaucoup !*
