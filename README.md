@@ -14,9 +14,9 @@ Une fonction est un morceau de programme qui permet de **réaliser plusieurs tac
 Pour créer une fonction nous allons utiliser la fonction *def* :
 
 ```python
-    def ma_fonction(parametre):
-        *fait quelque chose*
-        return resultat
+def ma_fonction(parametre):
+    *fait quelque chose*
+    return resultat
 ```
 
 *Je comprends mieux. Mais si je peux l'utiliser dans plusieurs programmes...*
@@ -76,10 +76,10 @@ def det2(mat):
 En testant notre code pour une matrice quelconque, le résultat suivant est renvoyé :
 
 ```python
-    import libmatrice as l
-    mat = [[4, 6], [9, 3]]
-    print(l.det2(mat))
-    Résultat: -42
+import libmatrice as l
+mat = [[4, 6], [9, 3]]
+print(l.det2(mat))
+Résultat: -42
 ```
 
 En effet pour calculer det2 il faut faire 4 * 3 - 6 * 9 = 12 - 54 et le résultat est bien -42.
@@ -142,10 +142,10 @@ def reduit(mat,ligne,colonne):
 Maintenant il faut tester ce programme :
 
 ```python
-    import libmatrice as l
-    mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
-    print(l.reduit(mat, 0, 0))
-    Résultat: [[3, 5], [1, 7]]
+import libmatrice as l
+mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
+print(l.reduit(mat, 0, 0))
+Résultat: [[3, 5], [1, 7]]
 ```
 *En fait ça revient supprimer des lignes ?*
 
@@ -182,10 +182,10 @@ def det3(mat):
 Petit test de notre code :
 
 ```python
-    import libmatrice as l
-    mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
-    print(l.det3(mat))
-    Résultat: -104
+import libmatrice as l
+mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
+print(l.det3(mat))
+Résultat: -104
 ```
 
 Et le voilà verifié :
@@ -224,28 +224,14 @@ def comatrice(mat):
 On effectue alors le test de notre fonction,
 
 ```python
-    import libmatrice as l
-    mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
-    print(l.comatrice(mat))
-    Résultat: [[16, -23, -15], [-40, 12, 44], [24, -2, -42]]
+import libmatrice as l
+mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
+print(l.comatrice(mat))
+Résultat: [[16, -23, -15], [-40, 12, 44], [24, -2, -42]]
 ```
 
 *Donc là, on a la matrice reduite, son determinant et sa comatrice...*
 
-Oui, il ne manque plus qu'à utiliser la formule du début :
+Oui, il ne manque plus qu'à utiliser la formule du début.
 
-![alt text](Images/Inverse_matrice.png "Formule inversion matrice 3x3")
-
-On en fait un algorithme :
-
-    On RECUPERE la transposée de la comatrice qui est passée en paramètre
-    On PARCOURT les lignes et colonnes de la matrice pour DIVISER les composants par le déterminant de la matrice
-    On RENVOIE le résultat obtenu qui est notre matrice inversée
-
-Et vous connaissez la chanson, le programme :
-
-```python
-    from libmatrice import *
-    transpose = transpose(mat)
-    comatrice = comatrice(mat)
-```
+*Je comprends mieux comment ça marche, je vais de ce pas télécharger cette librairie, merci beaucoup !*
