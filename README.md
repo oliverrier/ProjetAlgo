@@ -88,7 +88,9 @@ En effet pour calculer det2 il faut faire 4 * 3 - 6 * 9 = 12 - 54 et le résulta
 
 Ensuite, on doit réduire notre matrice 3x3 (celle que l'on veut inverser) en une matrice 2x2 pour obtenir une partie du calcul nécessaire pour calculer son déterminant.
 
-On doit donc choisir une ligne et une colonne à enlever pour avoir une matrice 2x2, disons que l'on souhaite enlever la 1ère ligne et la 2ème colonne. Voilà ce que ça donne pour nous,
+>## Comment on réduit une matrice 2x2 en une matrice 3x3 ?
+
+On doit choisir une ligne et une colonne à enlever pour avoir une matrice 2x2, disons que l'on souhaite enlever la 1ère ligne et la 2ème colonne. Voilà ce que ça donne pour nous :
 
 ![alt text](Images/Reduction_matrice.png "Reduction matrice 3x3")
 
@@ -147,13 +149,13 @@ Maintenant il faut tester ce programme :
 ```
 *En fait ça revient supprimer des lignes ?*
 
-En effet pour calculer reduit il faut supprimer une ligne et une colonne et donc dans ce cas là cela donne cela donne bien,
+En effet pour calculer reduit il faut supprimer une ligne et une colonne et donc dans ce cas là cela donne cela donne bien :
 
 ![alt text](Images/Verification_reduction_matrice.png "Verification reduction matrice exemple")
 
 *Maintenant qu'on sait réduire cette matrice 3x3 pour calculer son determinant qu'est-ce qu'on attend ?*
 
-Maintenant que nous savons réduire une matrice 3x3 en matrice 2x2 et calculer son déterminant, on peut calculer celui de notre matrice mère, le calcul est cependant un peu plus compliqué,
+Maintenant que nous savons réduire une matrice 3x3 en matrice 2x2 et calculer son déterminant, on peut calculer celui de notre matrice mère,le calcul est cependant un peu plus compliqué,
 
 ![alt text](Images/Determinant_matrice_3x3.svg "Calcul déterminant 3x3")
 
@@ -192,7 +194,11 @@ Et le voilà verifié :
 
 *Ah oui en effet ce n'est pas si compliqué !*
 
-Nous allons maintenant voir comment calculer la comatrice d'une matrice 3x3, pour cela rien de plus simple, il suffit d'appliquer cette belle formule :
+Nous allons maintenant voir comment calculer la comatrice d'une matrice 3x3.
+
+>## Comment on calcul une comatrice ?
+
+ Pour cela rien de plus simple, il suffit d'appliquer cette belle formule :
 
 ![alt text](Images/Comatrice.png "Calcul comatrice")
 
@@ -222,4 +228,24 @@ On effectue alors le test de notre fonction,
     mat = [[4, 6, 2], [9, 3, 5], [8, 1, 7]]
     print(l.comatrice(mat))
     Résultat: [[16, -23, -15], [-40, 12, 44], [24, -2, -42]]
+```
+
+*Donc là, on a la matrice reduite, son determinant et sa comatrice...*
+
+Oui, il ne manque plus qu'à utiliser la formule du début :
+
+![alt text](Images/Inverse_matrice.png "Formule inversion matrice 3x3")
+
+On en fait un algorithme :
+
+    On RECUPERE la transposée de la comatrice qui est passée en paramètre
+    On PARCOURT les lignes et colonnes de la matrice pour DIVISER les composants par le déterminant de la matrice
+    On RENVOIE le résultat obtenu qui est notre matrice inversée
+
+Et vous connaissez la chanson, le programme :
+
+```python
+    from libmatrice import *
+    transpose = transpose(mat)
+    comatrice = comatrice(mat)
 ```

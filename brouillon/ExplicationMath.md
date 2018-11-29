@@ -104,7 +104,3 @@ Algo:
     Pour inverser une matrice, on recupère la transposee de la comatrice qui nous est passée en paramètre.
     Ensuite on parcourt les lignes et colonnes de la matrice ainsi créée pour diviser chacun de ses composants par le déterminant de la matrice passée en paramètre.
     On renvoie ensuite le résultat obtenu qui est notre matrice inversée.
-
-
-    
-    
