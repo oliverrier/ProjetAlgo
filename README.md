@@ -165,19 +165,19 @@ Pas de panique ! On reconnait ici la réduction de notre matrice ainsi que le ca
     Ensuite on UTILISE LES FONCTIONS antérieures pour réaliser le calcul précédemment cité
     On RENVOIE le résultat obtenu
 
-C'est une fonction relativement simple à coder une fois que nous avons les autres, voilà ce qu'elle donne en python,
+C'est une fonction relativement simple à programmer une fois que nous avons les autres, voilà ce qu'elle donne en python :
 
 ```python
 def det3(mat):
-    #Condition taille 
+#Condition taille 
     if len(mat)!=3 or len(mat[0])!=3 or len(mat[1])!=3 or len(mat[2])!=3:
         return 'error'
-    # Calcul du déterminant
+# Calcul du déterminant
     determ3 = mat[0][0] * det2(reduit(mat,0,0)) - mat[0][1] * det2(reduit(mat,0,1)) + mat[0][2] * det2(reduit(mat,0,2))
     return determ3
 ```
 
-Petit test de notre code:
+Petit test de notre code :
 
 ```python
     import libmatrice as l
@@ -186,23 +186,25 @@ Petit test de notre code:
     Résultat: -104
 ```
 
-Et le voilà verifié:
+Et le voilà verifié :
 
 ![alt text](Images/Verification_determinant_3x3.png "Verification calcul matrice 3x3")
 
-Nous allons maintenant voir comment calculer la comatrice d'une matrice 3x3, pour cela rien de plus simple, il suffit d'appliquer cette belle formule,
+*Ah oui en effet ce n'est pas si compliqué !*
+
+Nous allons maintenant voir comment calculer la comatrice d'une matrice 3x3, pour cela rien de plus simple, il suffit d'appliquer cette belle formule :
 
 ![alt text](Images/Comatrice.png "Calcul comatrice")
 
-Pour l'algorithme derrière la fonction, on va encore utilisé les fonctions que nous avons fait auparavant,
+Pour l'algorithme derrière la fonction, on va encore utilisé les fonctions que nous avons fait auparavant :
 
-    Pour la comatrice, on initialise une matrice 3x3 à 0.
-    On parcourt ensuite les lignes et les colonnes de la matrice passée en paramètre.
-    On effectue ensuite le calcul du delta(i,j) pour chaque composant de la matrice passée en paramètre.
-    On obtient ainsi la matrice avec les bonnes valeurs.
-    On renvoie la matrice ainsi créée.
+    POUR la comatrice, on INITIALISE une matrice 3x3 à 0
+    On PARCOURT ensuite les lignes et les colonnes de la matrice passée en paramètre
+    On CALCUL du delta ▲(i,j) POUR CHAQUE composant de la matrice passée en paramètre
+    On OBTIENT la matrice avec les bonnes valeurs
+    On RENVOIE la matrice créée
 
-Pour le code voilà ce qu'on obtient,
+Pour le code voilà ce qu'on obtient :
 
 ```python
 def comatrice(mat):
